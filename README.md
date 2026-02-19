@@ -66,26 +66,27 @@ npm run dev
 - Skeleton Loading
 - 날씨 상태별 배경 변경
 
-#### API
+### API
 
 - OpenWeather API
 - newsdata.io API
 
-## 프로젝트구조
- weather
- ┣ src
- ┃ ┣ WeatherApp
- ┃ ┃ ┣ components
- ┃ ┃ ┃ ┣ Header
- ┃ ┃ ┃ ┣ Nation
- ┃ ┃ ┃ ┗ Pages
- ┃ ┃ ┃   ┣ Weather
- ┃ ┃ ┃   ┣ News
- ┃ ┃ ┃   ┗ Calc
- ┃ ┣ redux
- ┃ ┣ assets
- ┃ ┣ App.jsx
- ┃ ┗ main.jsx
+## 📁 프로젝트 구조
+
+```bash
+src/
+├─ components/        # 공통 UI 컴포넌트
+│  ├─ Header/         # 헤더 및 네비게이션
+│  ├─ Nation/         # 전국 날씨 컴포넌트
+│  └─ Pages/          # 페이지 단위 컴포넌트
+│     ├─ Weather/     # 메인 날씨 페이지
+│     ├─ News/        # 날씨 뉴스 페이지
+│     └─ Calc/        # 온도 계산기
+├─ redux/             # Redux Toolkit 상태 관리
+├─ assets/            # 이미지 및 아이콘
+├─ App.jsx
+└─ main.jsx
+```
 
 ## 주요 기능
 
