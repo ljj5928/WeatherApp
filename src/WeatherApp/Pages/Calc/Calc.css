@@ -1,0 +1,242 @@
+.calc {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calc input {
+  width: 90px;
+  padding: 6px 10px;
+  padding-right: 0px;
+  font-size: 14px;
+  color: #0f2a44;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(31, 59, 92, 0.25);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  text-align: right;
+}
+.calc input:focus {
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 2px rgba(31, 111, 235, 0.25);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.calc input[readonly] {
+  background: rgba(240, 245, 250, 0.9);
+  border-color: rgba(31, 59, 92, 0.15);
+  color: #1f3b5c;
+  font-weight: 600;
+  cursor: default;
+}
+
+.calc span {
+  margin-left: 6px;
+  font-size: 14px;
+  color: #1f3b5c;
+  font-weight: 500;
+}
+.calc h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f2a44;
+}
+.calc label {
+  font-size: 14px;
+  color: #0f2a44;
+}
+
+.calc button {
+  margin-top: 16px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: #1f3b5c;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(31, 59, 92, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  margin-left: 4vw;
+}
+
+.calc button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+.calc button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.calc .temp,
+.calc .feel-temp,
+.calc .thi {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+.temp .temp-con,
+.feel-temp .feel-con,
+.thi .thi-con {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.calc .arrow {
+  font-size: 50px;
+}
+
+.temp .temp-con .trans,
+.feel-temp .feel-con .feel-input,
+.thi .thi-con .thi-input {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.calc .thi {
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.thi-info {
+  margin-top: 14px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  font-size: 13px;
+  color: #1f3b5c;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  border-left: 4px solid rgba(31, 59, 92, 0.4);
+  width: fit-content;
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+}
+.thi-info .thi-info-t {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.thi-info .thi-info-t div {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.thi-info .desc {
+  font-size: 12px;
+
+}
+
+.thi-info .badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+  color: white;
+}
+.thi-info .good {
+  background: #2e8b57;
+}
+
+.thi-info .normal {
+  background: #f1c40f;
+  color: #3a2f00;
+}
+
+.thi-info .bad {
+  background: #e67e22;
+}
+
+.thi-info .worst {
+  background: #c0392b;
+}
+/* summary */
+.current-summary {
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.current-summary h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.summary-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.summary-text .name {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.summary-info {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+
+.summary-info span {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ===== 다크모드 ===== */
+
+
+/* ===== 모바일 ===== */
+
+@media screen and (max-width: 768px) {
+  .calc .arrow {
+    font-size: 30px;
+  }
+  .thi-info {
+    padding: 5px;
+    right: 10%;
+    bottom: 20%;
+    border-left: none;
+  }
+
+  .thi-info .label {
+    display: none;
+  }
+  .calc input {
+    width: 80px;
+  }
+  .thi-info .badge {
+    font-size: 0;
+  }
+  .summary-text{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .summary-info{
+    width: 100%;
+  }
+  .summary-info span{
+    font-size: 14px;
+  }
+}

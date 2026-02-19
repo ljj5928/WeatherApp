@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* 전체 레이아웃 */
+header {
+  padding: 20px 16px;
+}
+.contents {
+  padding: 0px 16px;
+}
+
+.contents-i .weather,
+.contents-i .news,
+.contents-i .calc {
+  width: calc(200% / 3);
+}
+
+.header-i,
+.contents-i {
+  padding: 0px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.weather,
+.news,
+.calc,
+.nation,
+.card,
+input,
+button {
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+.contents-i {
+  display: flex;
+  gap: 20px;
+  align-items: start;
+}
+
+/* 다크모드 */
+
+.app.dark .weather-main,
+.app.dark .weather-by-hour,
+.app.dark .weather-by-weekly-date,
+.app.dark .news,
+.app.dark .nation-list,
+.app.dark .calc .current-summary,
+.app.dark .calc .temp,
+.app.dark .calc .feel-temp,
+.app.dark .calc .thi
+ {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  color: #f8fafc;
+   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.weather.dark .weather img,
+.nation.dark .nation-item img,
+.weather.dark .card img {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+}
+
+.weather.dark .card:hover,
+.nation.dark .nation-item:hover {
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
+}
+
+.app.dark .news p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+.app.dark header * {
+  color: #f8fafc;
+}
+
+.app.dark .gnb a {
+  color: #cbd5e1;
+}
+
+.app.dark .gnb a.active {
+  color: #fbbf24;
+  font-weight: 600;
+}
+.app.dark .calc *{
+  color: #e2e8f0;
+}
+.app.dark .calc button , .app.dark .thi-info .desc {
+  color: rgb(15, 23, 42)
+}
+
+.app.dark .calc input {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+@media screen and (max-width: 1200px) {
+  .header-i,
+  .contents-i {
+    padding: 0px;
+  }
+  .contents-i .weather,
+  .contents-i .news,
+  .contents-i .calc {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .contents-i {
+    flex-direction: column;
+  }
+  .app.page-calc .nation-list {
+    display: none;
+  }
+}

@@ -1,0 +1,274 @@
+.weather {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.weather-main {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.main-con > span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.weather-main form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.weather-main input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.weather-main button {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: #ff9f78;
+  color: white;
+}
+
+.weather .main-con {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.weather .weather-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 150px;
+}
+
+.weather .main-con .weather-icon img {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.35));
+}
+
+.weather .main-con .weather-icon .main-temp {
+  transform: translateX(-20px);
+  font-size: 56px;
+  font-weight: 700;
+}
+.weather .weather-info {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px 30px;
+  justify-content: space-between;
+  gap: 20px;
+  border-radius: 10px;
+  color: #374151;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 16px rgba(0, 0, 0, 0.15);
+}
+.weather .weather-by-hour,
+.weather .weather-by-weekly-date {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  border-radius: 18px;
+  padding: 20px;
+}
+.weather-by-hour h4,
+.weather-by-weekly-date h4 {
+  margin-bottom: 12px;
+}
+
+.card-con {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.card-con .card {
+  min-width: 90px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  padding: 12px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-con .card img {
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.35));
+}
+
+.weather-by-weekly-date .card-con {
+  gap: 8px;
+}
+
+.weather-by-weekly-date .card {
+  flex: 1;
+}
+
+.card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+/* 다크모드 */
+
+.weather.dark * {
+  color: #f1f5f9;
+}
+
+.weather.dark .card-con .card,
+.weather.dark .weather-info {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.weather.dark input {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.weather.dark input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.weather.dark button {
+  background: linear-gradient(135deg, #fb7185, #f97316);
+}
+
+
+
+/* ===== Skeleton ===== */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+}
+
+.weather.dark .skeleton {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
+/* main */
+.skeleton-input {
+  height: 40px;
+  margin-bottom: 16px;
+}
+
+.skeleton-city {
+  width: 120px;
+  height: 24px;
+}
+
+.skeleton-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  
+}
+
+.skeleton-temp {
+  width: 80px;
+  height: 50px;
+  margin-left: 20px;
+}
+
+.skeleton-info {
+  width: 80px;
+  height: 24px;
+  padding-top: 20px;
+}
+
+/* cards */
+.skeleton-title {
+  width: 140px;
+  height: 32px;
+  margin-bottom: 12px;
+}
+
+.skeleton-time {
+  width: 50px;
+  height: 18px;
+    margin-bottom: 10px;
+}
+
+.skeleton-small-icon {
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.skeleton-small-temp {
+  width: 40px;
+  height: 18px;
+}
+
+.skeleton-range {
+  width: 70px;
+  height: 20px;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1200px) {
+  .weather .weather-info {
+    font-size: 14px;
+    gap: 10px;
+  }
+  .card-con .card {
+    gap: 3px;
+    font-size: 14px;
+    flex: 1;
+  }
+    .weather-by-hour .card-con .card:nth-child(n + 6) {
+    display: none;
+  }
+   .weather-by-hour .card-con {
+    gap: 8px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+  .weather-by-weekly-date,.weather-by-hour{
+    display: none;
+  }
+}
