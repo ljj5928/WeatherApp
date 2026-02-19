@@ -10,6 +10,17 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
+.news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.news-item p{
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+}
+
 /* skeleton */
 .skeleton {
   position: relative;
@@ -44,12 +55,7 @@
   }
 }
 
-/* News specific */
-.news-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+
 
 .skeleton-title {
   width: 70%;

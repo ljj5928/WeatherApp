@@ -39,13 +39,13 @@ const News = () => {
         <div className="news-item" key={idx}>
           <a href={item.link}>
             <h3>
-              {item.title
+              {item.title || "타이틀이 없는 기사입니다."
                 .replace(/<[^>]*>/g, "")
                 .replace(/&quot;/g, '"')
                 .replace(/&amp;/g, "&")}
             </h3>
             <p>
-              {item.description
+              {item.description || "요약 내용이 없는 기사입니다."
                 .replace(/<[^>]*>/g, "")
                 .replace(/&quot;/g, '"')
                 .replace(/&amp;/g, "&")}
