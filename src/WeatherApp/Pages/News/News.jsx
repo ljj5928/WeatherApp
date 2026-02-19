@@ -11,9 +11,15 @@ const News = () => {
   const fetchWeatherNews = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("https://newsapi.org/v2/everything?q=weather&sortBy=publishedAt&apiKey=a490705c3ffe42138c7e0bd88fb55ef7");
-      setNews(response.data.articles);
-      console.log(response)
+      const res = await axios.get("https://newsdata.io/api/1/news", {
+        params: {
+          apikey: "pub_5dc51aaf89864e0782c2d38d912a1ec6",
+          country: "kr",
+          language: "ko",
+        },
+      });
+      setNews(res.data.results || []);
+      console.log(res)
     } catch (error) {
       console.error("error");
     } finally {
@@ -31,7 +37,7 @@ const News = () => {
     <div className="news">
       {news?.slice(0, 8)?.map((item, idx) => (
         <div className="news-item" key={idx}>
-          <a href={item.url}>
+          <a href={item.link}>
             <h3>
               {item.title
                 .replace(/<[^>]*>/g, "")
