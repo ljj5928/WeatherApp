@@ -22,7 +22,14 @@ import "./Weather.css";
 const Weather = () => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
-  const [recentCities, setRecentCities] = useState([]);
+  const [recentCities, setRecentCities] = useState(() => {
+    try {
+      const saved = localStorage.getItem("recentCities");
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
 
   const currentWeather = useSelector((state) => state.weather.current || {});
   const dailyWeather = Object.values(
@@ -66,6 +73,10 @@ const Weather = () => {
       setCity("");
     } catch (err) {}
   };
+
+  useEffect(() => {
+    localStorage.setItem("recentCities", JSON.stringify(recentCities));
+  }, [recentCities]);
 
   const deleteCity = (idx) => {
     setRecentCities((recentCities) =>
@@ -118,17 +129,35 @@ const Weather = () => {
           </button>
         </form>
         <div className="recent-city">
-          {recentCities.length !== 0 ? (
-            recentCities.map((city, idx) => (
-              <div className="city-name">
-                <span key={idx} onClick={() => {dispatch(fetchWeatherByCity(city)),dispatch(fetchDailyWeatherByCity(city))}}>
-                  {city}
-                </span>
-                <button type="button" onClick={() => deleteCity(idx)}>
-                  x
-                </button>
-              </div>
-            ))
+          {recentCities.length > 0 ? (
+            <>
+              {recentCities.map((city, idx) => (
+                <div className="city-name" key={city}>
+                  <span
+                    onClick={() => {
+                      dispatch(fetchWeatherByCity(city));
+                      dispatch(fetchDailyWeatherByCity(city));
+                    }}
+                  >
+                    {city}
+                  </span>
+                  <button type="button" onClick={() => deleteCity(idx)}>
+                    ×
+                  </button>
+                </div>
+              ))}
+
+              <button
+                type="button"
+                className="reset-recent"
+                onClick={() => {
+                  setRecentCities([]);
+                  localStorage.removeItem("recentCities");
+                }}
+              >
+                검색 기록 초기화
+              </button>
+            </>
           ) : (
             <span className="recent-hint">
               최근 검색한 도시가 여기에 표시됩니다
