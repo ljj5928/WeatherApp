@@ -22,6 +22,8 @@ import "./Weather.css";
 const Weather = () => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
+  const [recentCities, setRecentCities] = useState([]);
+
   const currentWeather = useSelector((state) => state.weather.current || {});
   const dailyWeather = Object.values(
     useSelector((state) => state.weather.daily || {}),
@@ -43,12 +45,32 @@ const Weather = () => {
     getCurrentLocation();
   }, []);
 
-  const handleSearch = (e) => {
+  /* 검색 api호출 및 검색기록저장 */
+  const handleSearch = async (e) => {
     e.preventDefault();
-    if (!city.trim()) return getCurrentLocation();
-    dispatch(fetchWeatherByCity(city));
-    dispatch(fetchDailyWeatherByCity(city));
-    setCity("");
+
+    if (!city) return getCurrentLocation();
+
+    try {
+      await dispatch(fetchWeatherByCity(city)).unwrap();
+      await dispatch(fetchDailyWeatherByCity(city)).unwrap();
+
+      const value = city.trim().replace(/\s+/g, " ");
+      setRecentCities((prev) => {
+        const next = [
+          value,
+          ...prev.filter((c) => c.toLowerCase() !== value.toLowerCase()),
+        ];
+        return next.slice(0, 5);
+      });
+      setCity("");
+    } catch (err) {}
+  };
+
+  const deleteCity = (idx) => {
+    setRecentCities((recentCities) =>
+      recentCities.filter((city, index) => index !== idx),
+    );
   };
 
   /* 없는 도시 검색시  */
@@ -91,10 +113,28 @@ const Weather = () => {
               setCity(e.target.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, ""))
             }
           />
-          <button>
+          <button type="submit">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>
+        <div className="recent-city">
+          {recentCities.length !== 0 ? (
+            recentCities.map((city, idx) => (
+              <div className="city-name">
+                <span key={idx} onClick={() => {dispatch(fetchWeatherByCity(city)),dispatch(fetchDailyWeatherByCity(city))}}>
+                  {city}
+                </span>
+                <button type="button" onClick={() => deleteCity(idx)}>
+                  x
+                </button>
+              </div>
+            ))
+          ) : (
+            <span className="recent-hint">
+              최근 검색한 도시가 여기에 표시됩니다
+            </span>
+          )}
+        </div>
         <div className="main-con">
           <span>{currentWeather?.name}</span>
           <div className="weather-icon">
