@@ -13,10 +13,11 @@ import {
   faWind,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { setDark } from "../../redux/uiSlice";
+import { setDark, setUnit } from "../../redux/uiSlice";
 import WeatherByHour from "./WeatherByHour";
 import WeatherByWeekly from "./WeatherByWeekly";
 import WeatherSkeleton from "./WeatherSkeleton";
+import { formatTemp } from "../../util/temperature";
 import "./Weather.css";
 
 const Weather = () => {
@@ -37,6 +38,7 @@ const Weather = () => {
   );
   const isDark = useSelector((state) => state.ui.isDark);
   const { status, error } = useSelector((state) => state.weather);
+  const unit = useSelector((state) => state.ui.unit);
 
   /* api 호출 */
   const getCurrentLocation = () => {
@@ -94,6 +96,11 @@ const Weather = () => {
     }
   }, [status, error]);
 
+  /* 섭씨 화씨를 누르는것으로 변경 */
+  const toggleUnit = () => {
+    dispatch(setUnit(unit === "C" ? "F" : "C"));
+  };
+
   /* 다크 모드 활성 조건*/
   useEffect(() => {
     if (!currentWeather?.timezone) return;
@@ -115,19 +122,37 @@ const Weather = () => {
   return (
     <div className={`weather ${isDark ? "dark" : ""}`}>
       <div className="weather-main">
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="도시를 입력해주세요"
-            value={city}
-            onChange={(e) =>
-              setCity(e.target.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, ""))
-            }
-          />
-          <button type="submit">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button>
-        </form>
+        <div className="weather-util">
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder="도시를 입력해주세요"
+              value={city}
+              onChange={(e) =>
+                setCity(e.target.value.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, ""))
+              }
+            />
+            <button type="submit">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </button>
+          </form>
+          <div className="unit-toggle" role="group">
+            <button
+              type="button"
+              className={unit === "C" ? "active" : ""}
+              onClick={() => dispatch(setUnit("C"))}
+            >
+              °C
+            </button>
+            <button
+              type="button"
+              className={unit === "F" ? "active" : ""}
+              onClick={() => dispatch(setUnit("F"))}
+            >
+              °F
+            </button>
+          </div>
+        </div>
         <div className="recent-city">
           {recentCities.length > 0 ? (
             <>
@@ -173,13 +198,13 @@ const Weather = () => {
                 width={"150px"}
               />
             }
-            <span className="main-temp">
-              {currentWeather?.main?.temp?.toFixed(1)}°
+            <span className="main-temp" onClick={()=>toggleUnit()}>
+              {formatTemp(currentWeather?.main?.temp, unit)}
             </span>
           </div>
           <div className="weather-info">
             <span>
-              체감 온도:{currentWeather?.main?.feels_like?.toFixed(1)}°
+              체감 온도:{formatTemp(currentWeather?.main?.feels_like, unit)}
               <FontAwesomeIcon icon={faTemperatureEmpty} />
             </span>
             <span>
@@ -197,8 +222,9 @@ const Weather = () => {
       <WeatherByHour
         dailyWeather={dailyWeather}
         timezone={currentWeather?.timezone}
+        unit={unit}
       />
-      <WeatherByWeekly dailyWeather={dailyWeather} />
+      <WeatherByWeekly dailyWeather={dailyWeather} unit={unit} />
     </div>
   );
 };

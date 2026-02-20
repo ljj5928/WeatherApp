@@ -1,20 +1,16 @@
-import React, { useEffect, useState } from "react";
 import {
   fetchWeatherByCity,
   fetchDailyWeatherByCity,
 } from "../../redux/weatherThunk";
 import { useDispatch, useSelector } from "react-redux";
-
+import { formatTemp } from "../../util/temperature";
 import NationSkeleton from "./NationSkeleton";
 
-const NationMap = ({cities,loading,nationWeather}) => {
-  
+const NationMap = ({ cities, loading, nationWeather, unit }) => {
   const isDark = useSelector((state) => state.ui.isDark);
-
 
   const dispatch = useDispatch();
 
- 
   if (loading) return <NationSkeleton isDark={isDark} />;
 
   return (
@@ -38,7 +34,7 @@ const NationMap = ({cities,loading,nationWeather}) => {
             />
             <div>
               <span>{city.name}</span>
-              <span> {data?.main?.temp.toFixed(1)}°</span>
+              <span> {formatTemp(data?.main?.temp,unit)}</span>
             </div>
           </div>
         );
@@ -47,4 +43,4 @@ const NationMap = ({cities,loading,nationWeather}) => {
   );
 };
 
-export default NationMap
+export default NationMap;

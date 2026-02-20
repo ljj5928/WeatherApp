@@ -19,7 +19,6 @@ const News = () => {
         },
       });
       setNews(res.data.results || []);
-      console.log(res)
     } catch (error) {
       console.error("error");
     } finally {
@@ -35,8 +34,8 @@ const News = () => {
   if (loading) return <NewsSkeleton />;
   return (
     <div className="news">
-      {news?.slice(0, 8)?.map((item, idx) => (
-        <div className="news-item" key={idx}>
+      {news?.slice(0, 8)?.map((item) => (
+        <div className="news-item" key={item.article_id}>
           <a href={item.link}>
             <h3>
               {item.title || "타이틀이 없는 기사입니다."

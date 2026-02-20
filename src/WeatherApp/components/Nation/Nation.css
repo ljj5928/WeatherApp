@@ -263,7 +263,7 @@
     width: 100%;
   }
   .nation-list {
-    padding: 14px;
+    padding: 10px;
     border-radius: 18px
   }
   .nation-list-ul{
@@ -271,11 +271,14 @@
     grid-template-columns: repeat(2,1fr);
   }
   .nation-list-item {
-    padding: 10px 12px;
+    padding: 10px 8px;
     border-radius: 14px;
   }
   .nation-list-item img {
     width: 34px;
     height: 34px;
+  }
+  .nation-list-item .temp{
+    font-size: 14px;
   }
 }

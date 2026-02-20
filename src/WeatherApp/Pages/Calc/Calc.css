@@ -99,6 +99,11 @@
   flex-direction: column;
   gap: 20px;
 }
+
+
+
+
+
 .calc .thi {
   position: relative;
   padding-bottom: 100px;
@@ -136,7 +141,6 @@
 
 .thi-info .desc {
   font-size: 12px;
-
 }
 
 .thi-info .badge {
@@ -206,12 +210,14 @@
 
 /* ===== 다크모드 ===== */
 
-
 /* ===== 모바일 ===== */
 
 @media screen and (max-width: 768px) {
   .calc .arrow {
     font-size: 30px;
+  }
+  .calc span {
+    margin-left: 0px;
   }
   .thi-info {
     padding: 5px;
@@ -229,14 +235,14 @@
   .thi-info .badge {
     font-size: 0;
   }
-  .summary-text{
+  .summary-text {
     flex-direction: column;
     align-items: flex-start;
   }
-  .summary-info{
+  .summary-info {
     width: 100%;
   }
-  .summary-info span{
+  .summary-info span {
     font-size: 14px;
   }
 }

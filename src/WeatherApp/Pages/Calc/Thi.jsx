@@ -10,7 +10,7 @@ const Thi = () => {
 
   const inputCurrentTempHumid = () => {
     setTem(currentWeather?.main?.temp || 0);
-    setHumid(currentWeather?.main?.humidity || 0)
+    setHumid(currentWeather?.main?.humidity || 0);
   };
   return (
     <div className="thi">
@@ -19,44 +19,49 @@ const Thi = () => {
         <div className="thi-input">
           <div>
             <label htmlFor="temp">기온</label>
-            <br />
-            <input
-              type="number"
-              id="temp"
-              value={tem}
-              onChange={(e) => setTem(e.target.value)}
-            />
-            <span>°</span>
+            <div>
+              <input
+                type="number"
+                id="temp"
+                value={tem}
+                onChange={(e) => setTem(e.target.value)}
+              />
+              <span>°</span>
+            </div>
           </div>
           <div>
             <label htmlFor="humidity">습도</label>
-            <br />
-            <input
-              type="number"
-              id="humidity"
-              value={humid}
-              onChange={(e) => setHumid(e.target.value)}
-            />
-            <span>%</span>
+            <div>
+              <input
+                type="number"
+                id="humidity"
+                value={humid}
+                onChange={(e) => setHumid(e.target.value)}
+              />
+              <span>%</span>
+            </div>
           </div>
         </div>
         <FontAwesomeIcon icon={faRightLong} className="arrow" />
         <div>
           <label htmlFor="thi-value">불쾌 지수</label>
-          <br />
-          <input
-            type="number"
-            id="thi-value"
-            value={(
-              0.81 * tem +
-              0.01 * humid * (0.99 * tem - 14.3) +
-              46.3
-            ).toFixed(1)}
-            readOnly
-          />
+          <div>
+            <input
+              type="number"
+              id="thi-value"
+              value={(
+                0.81 * tem +
+                0.01 * humid * (0.99 * tem - 14.3) +
+                46.3
+              ).toFixed(1)}
+              readOnly
+            />
+          </div>
         </div>
       </div>
-      <button type="button" onClick={inputCurrentTempHumid}>현재 날씨 불러오기</button>
+      <button type="button" onClick={inputCurrentTempHumid}>
+        현재 날씨 불러오기
+      </button>
       <div className="thi-info">
         <span className="label">지수별 상태</span>
         <div className="thi-info-t">

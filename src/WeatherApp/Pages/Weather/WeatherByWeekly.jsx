@@ -1,6 +1,7 @@
 import React, { useMemo } from "react";
+import { formatTemp } from "../../util/temperature";
 
-const WeatherByWeekly = ({ dailyWeather }) => {
+const WeatherByWeekly = ({ dailyWeather ,unit}) => {
   /* ===== 날짜별 그룹화 ===== */
 
   const groupedByDate = useMemo(() => {
@@ -23,11 +24,8 @@ const WeatherByWeekly = ({ dailyWeather }) => {
       }, {});
   }, [dailyWeather]);
 
-
   const getNoonIcon = (items) => {
-    const noonItem = items.find((item) =>
-      item?.dt_txt.includes("09:00:00")
-    );
+    const noonItem = items.find((item) => item?.dt_txt.includes("09:00:00"));
     return noonItem?.weather?.[0]?.icon;
   };
 
@@ -36,24 +34,19 @@ const WeatherByWeekly = ({ dailyWeather }) => {
     return days[new Date(dateStr).getDay()];
   };
 
-
   const dailyTemps = useMemo(() => {
-    return Object.entries(groupedByDate).map(
-      ([date, { rawDate, items }]) => {
-        const tempsMin = items.map((i) => i.main.temp_min);
-        const tempsMax = items.map((i) => i.main.temp_max);
+    return Object.entries(groupedByDate).map(([date, { rawDate, items }]) => {
+      const tempsMin = items.map((i) => i.main.temp_min);
+      const tempsMax = items.map((i) => i.main.temp_max);
 
-        return {
-          date: `${date} (${getDayOfWeek(rawDate)})`,
-          minTemp: Math.min(...tempsMin).toFixed(1),
-          maxTemp: Math.max(...tempsMax).toFixed(1),
-          icon: getNoonIcon(items),
-        };
-      }
-    );
+      return {
+        date: `${date} (${getDayOfWeek(rawDate)})`,
+        minTemp: Math.min(...tempsMin),
+        maxTemp: Math.max(...tempsMax),
+        icon: getNoonIcon(items),
+      };
+    });
   }, [groupedByDate]);
-
-
 
   return (
     <div className="weather-by-weekly-date">
@@ -61,16 +54,20 @@ const WeatherByWeekly = ({ dailyWeather }) => {
       <div className="card-con">
         {dailyTemps.slice(0, 5).map((item, idx) => (
           <div key={idx} className="card">
-            <span>{item.date}</span>
+            <div className="weekly-date">
+              <span className="date">{item.date.split(" ")[0]}</span>
+              <span className="day">{item.date.split(" ")[1]}</span>
+            </div>
             <span>
               <img
                 src={`https://openweathermap.org/img/wn/${item.icon}@2x.png`}
                 width="50px"
               />
             </span>
-            <div>
-              <span className="min-temp">{item.minTemp}°</span> /
-              <span className="max-temp">{item.maxTemp}°</span>
+            <div className="weekly-temp">
+              <span className="min-temp">{formatTemp(item.minTemp,unit)}</span>
+              <span className="mobile-slash">/ </span>
+              <span className="max-temp">{formatTemp(item.maxTemp,unit)}</span>
             </div>
           </div>
         ))}

@@ -1,8 +1,10 @@
+/* ㅣayout */
 .weather {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+
 .weather-main {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
@@ -16,11 +18,16 @@
   font-size: 20px;
   font-weight: 600;
 }
+.weather-main .weather-util {
+  display: flex;
+  gap: 8px;
+}
 
 .weather-main form {
   display: flex;
   gap: 8px;
   margin-bottom: 5px;
+  flex: 1;
 }
 
 .weather-main input {
@@ -41,6 +48,7 @@
   color: white;
 }
 
+/* search */
 .recent-city {
   display: flex;
   flex-wrap: wrap;
@@ -48,7 +56,6 @@
   margin-bottom: 16px;
 }
 
-/* chip */
 .city-name {
   display: inline-flex;
   align-items: center;
@@ -121,8 +128,52 @@
 .reset-recent:active {
   transform: scale(0.95);
 }
+/* unit-toggle */
+/* ===== unit toggle ===== */
+.unit-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
 
+.unit-toggle button {
+  all: unset;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #374151;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
 
+.unit-toggle button:hover {
+  opacity: 0.85;
+}
+
+.unit-toggle button.active {
+  background: rgba(255, 255, 255, 0.95);
+  color: #111827;
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.unit-toggle button:active {
+  transform: scale(0.95);
+}
+
+.unit-toggle button:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.8);
+  outline-offset: 2px;
+}
+/* main */
 .weather .main-con {
   display: flex;
   flex-direction: column;
@@ -145,6 +196,7 @@
   transform: translateX(-20px);
   font-size: 56px;
   font-weight: 700;
+  cursor: pointer;
 }
 .weather .weather-info {
   display: flex;
@@ -157,6 +209,8 @@
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0 12px 16px rgba(0, 0, 0, 0.15);
 }
+
+/* hourly, weekly */
 .weather .weather-by-hour,
 .weather .weather-by-weekly-date {
   background: rgba(255, 255, 255, 0.55);
@@ -209,6 +263,22 @@
   transform: translateY(-4px);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
+.weekly-date {
+  display: flex;
+}
+
+.weekly-temp {
+  display: flex;
+}
+
+.min-temp {
+  color: rgb(42, 116, 248);
+}
+
+.max-temp {
+  color: rgb(221, 1, 0);
+}
+
 /* 다크모드 */
 
 .weather.dark * {
@@ -228,7 +298,7 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-.weather.dark button {
+.weather.dark form button {
   background: linear-gradient(135deg, #fb7185, #f97316);
 }
 
@@ -242,10 +312,21 @@
   background: rgba(255, 255, 255, 0.18);
   color: #fff;
 }
+.weather.dark .unit-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
 
+.weather.dark .unit-toggle button {
+  color: rgba(255, 255, 255, 0.65);
+}
 
+.weather.dark .unit-toggle button.active {
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+}
 
-/* ===== Skeleton ===== */
+/* Skeleton  */
 
 .skeleton {
   position: relative;
@@ -359,8 +440,41 @@
 }
 
 @media screen and (max-width: 768px) {
-  .weather-by-weekly-date,
-  .weather-by-hour {
+  .unit-toggle {
     display: none;
+  }
+
+  .weather .weather-info {
+    padding: 10px 15px;
+  }
+
+  .weather .weather-by-hour,
+  .weather .weather-by-weekly-date {
+    padding: 16px;
+  }
+
+  .card-con .card {
+    min-width: 0px;
+  }
+
+  .mobile-slash {
+    display: none;
+  }
+  .weather .main-con .weather-icon .main-temp {
+    font-size: 40px;
+    
+  }
+  .weather .main-con .weather-icon {
+    height: 100px;
+  }
+  .weekly-date {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .weekly-temp {
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
   }
 }

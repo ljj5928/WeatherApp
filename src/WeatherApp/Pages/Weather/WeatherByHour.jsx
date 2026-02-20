@@ -1,11 +1,12 @@
 import React from "react";
+import { formatTemp } from "../../util/temperature";
 
-const WeatherByHour = ({ dailyWeather, timezone }) => {
+const WeatherByHour = ({ dailyWeather, timezone ,unit}) => {
   const getLocalDate = (dtTxt) => {
     return new Date(dtTxt.replace(" ", "T"));
   };
 
-  const getLocalTimeLabel = (dtTxt, timezone) => {
+  const getLocalTimeLabel = (dtTxt, timezone ) => {
     const local = getLocalDate(dtTxt);
     const hour = local.getHours() + timezone / 3600;
 
@@ -52,7 +53,7 @@ const WeatherByHour = ({ dailyWeather, timezone }) => {
                   width="50px"
                 />
               </span>
-              <span>{item?.main?.temp?.toFixed(1)}°</span>
+              <span>{formatTemp(item?.main?.temp,unit)}</span>
             </div>
           ))}
       </div>

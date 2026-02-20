@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import NationMap from "./NationMap";
 import NationList from "./NationList";
 import axios from "axios";
-import './Nation.css'
+import "./Nation.css";
+import { useSelector } from "react-redux";
 
 const NationTotal = () => {
   const APIkey = "abaa4bc6ae221a9e82b86c4cfb336282";
   const [loading, setLoading] = useState(true);
   const [nationWeather, setNationWeather] = useState({});
+  const unit = useSelector((state) => state.ui.unit);
 
   const cities = [
     { name: "서울", en: "seoul", className: "seoul" },
@@ -51,10 +53,15 @@ const NationTotal = () => {
   return (
     <>
       <div className="nation-map-only">
-        <NationMap cities={cities}  loading={loading} nationWeather={nationWeather}/>
+        <NationMap
+          cities={cities}
+          loading={loading}
+          nationWeather={nationWeather}
+          unit={unit}
+        />
       </div>
       <div className="nation-list-only">
-        <NationList cities={cities} nationWeather={nationWeather} />
+        <NationList cities={cities} nationWeather={nationWeather} unit={unit} />
       </div>
     </>
   );

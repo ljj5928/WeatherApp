@@ -4,8 +4,9 @@ import {
   fetchWeatherByCity,
   fetchDailyWeatherByCity,
 } from "../../redux/weatherThunk";
+import { formatTemp } from "../../util/temperature";
 
-const NationList = ({ cities, nationWeather }) => {
+const NationList = ({ cities, nationWeather, unit }) => {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.ui.isDark);
 
@@ -41,7 +42,7 @@ const NationList = ({ cities, nationWeather }) => {
                 />
               )}
               <div className="right">
-                <span className="temp">{temp?.toFixed?.(1) ?? "-"}°</span>
+                <span className="temp">{formatTemp(temp,unit)}</span>
               </div>
             </li>
           );
