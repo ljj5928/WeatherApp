@@ -208,16 +208,12 @@
   font-weight: 700;
 }
 
-/* ===== 다크모드 ===== */
-
-/* ===== 모바일 ===== */
-
 @media screen and (max-width: 768px) {
   .calc .arrow {
     font-size: 30px;
   }
   .calc span {
-    margin-left: 0px;
+    margin-left: 4px;
   }
   .thi-info {
     padding: 5px;

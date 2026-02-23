@@ -1,43 +1,52 @@
-import React, { useState } from "react";
+/* router */
 import { Link, NavLink } from "react-router-dom";
+/* redux */
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchWeatherByLocation,
+  fetchDailyWeatherByLocation,
+  fetchWeatherByCity,
+  fetchDailyWeatherByCity,
+} from "../../redux/weatherThunk";
+import { setDark } from "../../redux/uiSlice";
+/* fontawesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun } from "@fortawesome/free-regular-svg-icons";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
+/* cssw */
 import "./Header.css";
-import { useDispatch, useSelector } from "react-redux";
-import { setDark } from "../../redux/uiSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.ui.isDark);
+  const handleGoHome = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      dispatch(fetchWeatherByLocation({ lat, lon }));
+      dispatch(fetchDailyWeatherByLocation({ lat, lon }));
+      (error) => {
+        console.error(error);
+        dispatch(fetchWeatherByCity("Daegu"));
+        dispatch(fetchDailyWeatherByCity("Daegu"));
+      };
+    });
+  };
   return (
     <header>
       <div className="header-i">
         <h2>
-          <Link to={"/"}>오늘의 날씨</Link>
+          <Link to={"/"} onClick={() => handleGoHome()}>
+            오늘의 날씨
+          </Link>
         </h2>
         <div className="header-menu">
           <div className="gnb">
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              날씨
-            </NavLink>
+            <NavLink to="/">날씨</NavLink>
 
-            <NavLink
-              to="/news"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              뉴스속보
-            </NavLink>
+            <NavLink to="/news">뉴스속보</NavLink>
 
-            <NavLink
-              to="/calc"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              기상 계산기
-            </NavLink>
+            <NavLink to="/calc">기상 계산기</NavLink>
           </div>
           <div className={`darkmode-btn ${isDark ? "dark" : ""}`}>
             <button

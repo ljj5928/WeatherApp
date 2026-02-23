@@ -101,6 +101,7 @@ const Weather = () => {
     dispatch(setUnit(unit === "C" ? "F" : "C"));
   };
 
+
   /* 다크 모드 활성 조건*/
   useEffect(() => {
     if (!currentWeather?.timezone) return;

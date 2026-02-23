@@ -13,13 +13,12 @@ const App = () => {
   const isDark = useSelector((state) => state.ui.isDark);
   const currentWeather = useSelector((state) => state.weather.current);
   const location = useLocation();
-  const pageClass = location.pathname.replace("/", "") || "home";
+  const currentPage = location.pathname.replace("/", "") || "home";
 
-
-
+  /* 웨더 가져오기 */
   const weatherMain = currentWeather?.weather?.[0]?.main;
 
-  const weatherBgClass = (() => {
+  const weatherBg = (() => {
     switch (weatherMain) {
       case "Rain":
       case "Drizzle":
@@ -41,8 +40,8 @@ const App = () => {
   })();
   return (
     <>
-      <div className={`bg ${isDark ? "dark" : ""} ${weatherBgClass}`}></div>
-      <div className={`app ${isDark ? "dark" : ""} page-${pageClass}`}>
+      <div className={`bg ${isDark ? "dark" : ""} ${weatherBg}`}></div>
+      <div className={`app ${isDark ? "dark" : ""} page-${currentPage}`}>
         <Header />
         <div className="contents">
           <div className="contents-i">

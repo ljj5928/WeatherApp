@@ -9,6 +9,14 @@ import { formatTemp } from "../../util/temperature";
 const NationList = ({ cities, nationWeather, unit }) => {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.ui.isDark);
+  const changeCurrentWeatherByNation = (cityEn) => {
+     window.scrollTo({
+                  top: 0,
+                  behavior: "smooth", 
+                });
+                dispatch(fetchWeatherByCity(cityEn));
+                dispatch(fetchDailyWeatherByCity(cityEn));
+  }
 
   return (
     <section className={`nation-list ${isDark ? "dark" : ""}`}>
@@ -27,10 +35,7 @@ const NationList = ({ cities, nationWeather, unit }) => {
             <li
               key={city.en}
               className="nation-list-item"
-              onClick={() => {
-                dispatch(fetchWeatherByCity(city.en));
-                dispatch(fetchDailyWeatherByCity(city.en));
-              }}
+              onClick={()=>changeCurrentWeatherByNation(city.en)}
             >
               <div className="left">
                 <span className="city">{city.name}</span>
@@ -42,7 +47,7 @@ const NationList = ({ cities, nationWeather, unit }) => {
                 />
               )}
               <div className="right">
-                <span className="temp">{formatTemp(temp,unit)}</span>
+                <span className="temp">{formatTemp(temp, unit)}</span>
               </div>
             </li>
           );
