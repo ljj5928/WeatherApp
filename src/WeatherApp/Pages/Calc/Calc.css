@@ -213,7 +213,7 @@
     font-size: 30px;
   }
   .calc span {
-    margin-left: none;
+    margin-left: 0;
   }
   .thi-info {
     padding: 5px;

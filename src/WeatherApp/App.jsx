@@ -9,6 +9,8 @@ import Calc from "./Pages/Calc/Calc";
 import {
   fetchWeatherByLocation,
   fetchDailyWeatherByLocation,
+  fetchWeatherByCity,
+  fetchDailyWeatherByCity,
 } from "./redux/weatherThunk";
 import "./App.css";
 import "./bg.css";
@@ -18,26 +20,29 @@ const App = () => {
   const currentWeather = useSelector((state) => state.weather.current);
   const location = useLocation();
   const currentPage = location.pathname.replace("/", "") || "home";
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    /* api 호출 */
-    const getCurrentLocation = () => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        dispatch(fetchWeatherByLocation({ lat, lon }));
-        dispatch(fetchDailyWeatherByLocation({ lat, lon }));
-      });
-    };
-  
-    useEffect(() => {
-      getCurrentLocation();
-    }, []);
-  
+  /* api 호출 */
+  const getCurrentLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
+      dispatch(fetchWeatherByLocation({ lat, lon }));
+      dispatch(fetchDailyWeatherByLocation({ lat, lon }));
+      (error) => {
+        console.error(error);
+        dispatch(fetchWeatherByCity("Daegu"));
+        dispatch(fetchDailyWeatherByCity("Daegu"));
+      };
+    });
+  };
+
+  useEffect(() => {
+    getCurrentLocation();
+  }, []);
 
   /* 웨더 가져오기 */
   const weatherMain = currentWeather?.weather?.[0]?.main;
-
 
   const weatherBg = (() => {
     switch (weatherMain) {
@@ -67,7 +72,10 @@ const App = () => {
         <div className="contents">
           <div className="contents-i">
             <Routes>
-              <Route path="/" element={<Weather  getCurrentLocation={getCurrentLocation}/>} />
+              <Route
+                path="/"
+                element={<Weather getCurrentLocation={getCurrentLocation} />}
+              />
               <Route path="/news" element={<News />} />
               <Route path="/calc" element={<Calc />} />
             </Routes>
