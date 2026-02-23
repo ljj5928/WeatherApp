@@ -15,6 +15,16 @@ const NationMap = ({ cities, loading, nationWeather, unit }) => {
 
   return (
     <div className={`nation ${isDark ? "dark" : ""}`}>
+      {isDark ? (
+         <div className="nation-bg">
+          <img src="./darkmap.png" alt="지도" />
+        </div>
+      ) : (
+        <div className="nation-bg">
+          <img src="./map.png" alt="지도" />
+        </div>
+      )}
+
       <h3>전국 날씨</h3>
       {cities.map((city) => {
         const data = nationWeather[city.en];
@@ -34,7 +44,7 @@ const NationMap = ({ cities, loading, nationWeather, unit }) => {
             />
             <div>
               <span>{city.name}</span>
-              <span> {formatTemp(data?.main?.temp,unit)}</span>
+              <span> {formatTemp(data?.main?.temp, unit)}</span>
             </div>
           </div>
         );

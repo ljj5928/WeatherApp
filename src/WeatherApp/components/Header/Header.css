@@ -1,9 +1,74 @@
 
-.gnb {
+.header-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.darkmode-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+}
+
+.darkmode-btn button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  font-size: 16px;
+}
+
+.darkmode-btn button:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.darkmode-btn button.active {
+  background: #fff;
+  color: #f59e0b; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.header-menu .gnb {
   padding: 10px 0px;
   display: flex;
   gap: 15px;
 }
-.gnb .active {
+.header-menu .gnb .active {
   font-weight: 600;
+}
+
+
+
+/* 다크모드 전체 */
+.app.dark .darkmode-btn {
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+}
+
+/* 다크모드 버튼 */
+.app.dark .darkmode-btn button {
+  color: #94a3b8;
+}
+
+.app.dark .darkmode-btn button:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* 다크모드 활성 */
+.app.dark .darkmode-btn button.active {
+  background: rgba(255,255,255,0.15);
+  color: #fbbf24; /* moon 강조 */
 }
