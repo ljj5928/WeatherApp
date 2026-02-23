@@ -87,21 +87,9 @@ button {
   color: #cbd5e1;
   line-height: 1.6;
 }
-.app.dark header * {
-  color: #f8fafc;
-}
 
-.app.dark .gnb a {
-  color: #cbd5e1;
-}
 
-.app.dark .gnb a.active {
-  color: #fbbf24;
-  font-weight: 600;
-}
-.app.dark .calc *{
-  color: #e2e8f0;
-}
+
 .app.dark .calc button , .app.dark .thi-info .desc {
   color: rgb(15, 23, 42)
 }
@@ -127,7 +115,7 @@ button {
   .contents-i {
     flex-direction: column;
   }
-  .app.page-calc .nation-list {
+  .app.page-calc .nation-list ,.app.page-news .nation-list  {
     display: none;
   }
 }

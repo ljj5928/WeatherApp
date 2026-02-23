@@ -100,10 +100,6 @@
   gap: 20px;
 }
 
-
-
-
-
 .calc .thi {
   position: relative;
   padding-bottom: 100px;
@@ -206,6 +202,11 @@
 .summary-info span {
   font-size: 16px;
   font-weight: 700;
+}
+
+/* dark-mode */
+.app.dark .calc *{
+  color: #e2e8f0;
 }
 
 @media screen and (max-width: 768px) {

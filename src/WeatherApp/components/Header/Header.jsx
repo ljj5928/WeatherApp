@@ -35,19 +35,16 @@ const Header = () => {
   return (
     <header>
       <div className="header-i">
-        <h2>
-          <Link to={"/"} onClick={() => handleGoHome()}>
-            오늘의 날씨
-          </Link>
-        </h2>
         <div className="header-menu">
-          <div className="gnb">
-            <NavLink to="/">날씨</NavLink>
-
-            <NavLink to="/news">뉴스속보</NavLink>
-
-            <NavLink to="/calc">기상 계산기</NavLink>
-          </div>
+          <h2>
+            <Link to={"/"} onClick={() => handleGoHome()}>
+              {isDark ? (
+                <img src="./logo_dark.png" alt="메인로고" className="logo" />
+              ) : (
+                <img src="./logo.png" alt="다크모드메인로고" className="logo" />
+              )}
+            </Link>
+          </h2>
           <div className={`darkmode-btn ${isDark ? "dark" : ""}`}>
             <button
               type="button"
@@ -64,6 +61,13 @@ const Header = () => {
               <FontAwesomeIcon icon={faMoon} />
             </button>
           </div>
+        </div>
+        <div className="gnb">
+          <NavLink to="/">오늘의 날씨</NavLink>
+
+          <NavLink to="/news">뉴스속보</NavLink>
+
+          <NavLink to="/calc">기상 계산기</NavLink>
         </div>
       </div>
     </header>

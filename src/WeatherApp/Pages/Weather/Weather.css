@@ -28,6 +28,7 @@
   gap: 8px;
   margin-bottom: 5px;
   flex: 1;
+  width: 100%;
 }
 
 .weather-main input {
@@ -452,8 +453,15 @@
     padding: 16px;
   }
 
+  .weather .card-con {
+    border-radius: 16px;
+    overflow: hidden;
+    gap: 0px;
+  }
+
   .card-con .card {
     min-width: 0px;
+    border-radius: 0;
   }
 
   .mobile-slash {
@@ -461,7 +469,6 @@
   }
   .weather .main-con .weather-icon .main-temp {
     font-size: 40px;
-    
   }
   .weather .main-con .weather-icon {
     height: 100px;
