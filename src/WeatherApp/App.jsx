@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./components/Header/Header";
 import NationTotal from "./components/Nation/NationTotal";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Weather from "./Pages/Weather/Weather";
 import News from "./Pages/News/News";
 import Calc from "./Pages/Calc/Calc";
+import {
+  fetchWeatherByLocation,
+  fetchDailyWeatherByLocation,
+} from "./redux/weatherThunk";
 import "./App.css";
 import "./bg.css";
 
@@ -14,9 +18,26 @@ const App = () => {
   const currentWeather = useSelector((state) => state.weather.current);
   const location = useLocation();
   const currentPage = location.pathname.replace("/", "") || "home";
+  const dispatch = useDispatch()
+
+    /* api 호출 */
+    const getCurrentLocation = () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        dispatch(fetchWeatherByLocation({ lat, lon }));
+        dispatch(fetchDailyWeatherByLocation({ lat, lon }));
+      });
+    };
+  
+    useEffect(() => {
+      getCurrentLocation();
+    }, []);
+  
 
   /* 웨더 가져오기 */
   const weatherMain = currentWeather?.weather?.[0]?.main;
+
 
   const weatherBg = (() => {
     switch (weatherMain) {
@@ -46,7 +67,7 @@ const App = () => {
         <div className="contents">
           <div className="contents-i">
             <Routes>
-              <Route path="/" element={<Weather />} />
+              <Route path="/" element={<Weather  getCurrentLocation={getCurrentLocation}/>} />
               <Route path="/news" element={<News />} />
               <Route path="/calc" element={<Calc />} />
             </Routes>

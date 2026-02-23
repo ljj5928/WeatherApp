@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+/* redux */
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchWeatherByLocation,
-  fetchDailyWeatherByLocation,
   fetchWeatherByCity,
   fetchDailyWeatherByCity,
 } from "../../redux/weatherThunk";
+import { setDark, setUnit } from "../../redux/uiSlice";
+/* fontawesome */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDroplet,
@@ -13,14 +14,16 @@ import {
   faWind,
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
-import { setDark, setUnit } from "../../redux/uiSlice";
+/* components */
 import WeatherByHour from "./WeatherByHour";
 import WeatherByWeekly from "./WeatherByWeekly";
 import WeatherSkeleton from "./WeatherSkeleton";
+/* util */
 import { formatTemp } from "../../util/temperature";
+/* css */
 import "./Weather.css";
 
-const Weather = () => {
+const Weather = (getCurrentLocation) => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
   const [recentCities, setRecentCities] = useState(() => {
@@ -40,19 +43,6 @@ const Weather = () => {
   const { status, error } = useSelector((state) => state.weather);
   const unit = useSelector((state) => state.ui.unit);
 
-  /* api 호출 */
-  const getCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      let lat = position.coords.latitude;
-      let lon = position.coords.longitude;
-      dispatch(fetchWeatherByLocation({ lat, lon }));
-      dispatch(fetchDailyWeatherByLocation({ lat, lon }));
-    });
-  };
-
-  useEffect(() => {
-    getCurrentLocation();
-  }, []);
 
   /* 검색 api호출 및 검색기록저장 */
   const handleSearch = async (e) => {
