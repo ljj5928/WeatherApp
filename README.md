@@ -83,6 +83,7 @@ src/
 │     ├─ News/        # 날씨 뉴스 페이지
 │     └─ Calc/        # 온도 계산기
 ├─ redux/             # Redux Toolkit 상태 관리
+├─ util/              # 함수관리
 ├─ assets/            # 이미지 및 아이콘
 ├─ App.jsx
 └─ main.jsx
@@ -195,3 +196,8 @@ API 비동기 요청 처리
 - News Data: newsdata.io
 - Weather Icons: OpenWeather
 - Background Images: Unsplash (Free License)
+
+### 이미지 출처
+- 본 프로젝트에 사용된 일부 이미지는 무료 이미지로 제공되는 리소스를 활용하였으나,
+  정확한 출처를 확인할 수 없습니다.
+- 문제가 될 경우 즉시 삭제 또는 교체하겠습니다.
