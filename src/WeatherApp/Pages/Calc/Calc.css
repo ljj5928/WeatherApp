@@ -72,7 +72,7 @@
 .calc .temp,
 .calc .feel-temp,
 .calc .thi {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;

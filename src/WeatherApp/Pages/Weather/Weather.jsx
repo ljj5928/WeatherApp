@@ -43,7 +43,6 @@ const Weather = (getCurrentLocation) => {
   const { status, error } = useSelector((state) => state.weather);
   const unit = useSelector((state) => state.ui.unit);
 
-
   /* 검색 api호출 및 검색기록저장 */
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -90,7 +89,6 @@ const Weather = (getCurrentLocation) => {
   const toggleUnit = () => {
     dispatch(setUnit(unit === "C" ? "F" : "C"));
   };
-
 
   /* 다크 모드 활성 조건*/
   useEffect(() => {
@@ -189,7 +187,7 @@ const Weather = (getCurrentLocation) => {
                 width={"150px"}
               />
             }
-            <span className="main-temp" onClick={()=>toggleUnit()}>
+            <span className="main-temp" onClick={() => toggleUnit()}>
               {formatTemp(currentWeather?.main?.temp, unit)}
             </span>
           </div>

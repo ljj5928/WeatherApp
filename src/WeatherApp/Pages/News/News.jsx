@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NewsSkeleton from "./NewsSkeleton";
+import { timeAgo } from "../../util/newsTime";
 import "./News.css";
 
 const News = () => {
@@ -37,21 +38,27 @@ const News = () => {
       {news?.slice(0, 8)?.map((item) => (
         <div className="news-item" key={item.article_id}>
           <a href={item.link}>
-            <h3>
-              {item.title || "타이틀이 없는 기사입니다."
-                .replace(/<[^>]*>/g, "")
-                .replace(/&quot;/g, '"')
-                .replace(/&amp;/g, "&")}
+            <h3 className="news-title">
+              {item.title ||
+                "타이틀이 없는 기사입니다."
+                  .replace(/<[^>]*>/g, "")
+                  .replace(/&quot;/g, '"')
+                  .replace(/&amp;/g, "&")}
             </h3>
-            <p>
-              {item.description || "요약 내용이 없는 기사입니다."
-                .replace(/<[^>]*>/g, "")
-                .replace(/&quot;/g, '"')
-                .replace(/&amp;/g, "&")}
+            <p className="news-desc">
+              {item.description ||
+                "요약 내용이 없는 기사입니다."
+                  .replace(/<[^>]*>/g, "")
+                  .replace(/&quot;/g, '"')
+                  .replace(/&amp;/g, "&")}
+            </p>
+            <p className="news-meta">
+                {item?.source_name} • {timeAgo(item.pubDate, item.pubDateTZ)}
             </p>
           </a>
         </div>
       ))}
+      {console.log(news)}
     </div>
   );
 };
