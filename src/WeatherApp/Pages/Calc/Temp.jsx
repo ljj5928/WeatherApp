@@ -27,7 +27,6 @@ const Temp = () => {
                 id="celsius"
                 value={cel}
                 onChange={(e) => setCel(Number(e.target.value))}
-                autoFocus
               />
               <span>°C</span>
             </div>
