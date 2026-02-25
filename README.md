@@ -31,8 +31,8 @@ npm run dev
 ※ 본 프로젝트는 과제 제출용으로, API Key는 학습 목적상 프론트엔드에 포함되어 있습니다.
 실서비스에서는 서버 환경 변수로 관리해야 합니다.
 
-🔗 Live Demo
-👉 https://ljj5928.github.io/WeatherApp/#/
+- Live Demo
+https://ljj5928.github.io/WeatherApp/#/
 
 ## ✨핵심기능
 
@@ -191,7 +191,7 @@ API 비동기 요청 처리
 위치 기반 날씨 조회
 도시 검색 날씨 조회
 
-## 라이선스 & 출처
+## 🎫 라이선스 & 출처
 - Weather Data: OpenWeather API
 - News Data: newsdata.io
 - Weather Icons: OpenWeather
