@@ -484,4 +484,15 @@
     justify-content: flex-start;
     align-items: center;
   }
+  .city-name {
+    font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px
+  }
+  .city-name:nth-child(n + 3) {
+  display: none;
+}
+  .reset-recent{
+    display: none;
+  }
 }

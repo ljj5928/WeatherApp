@@ -23,7 +23,7 @@ import { formatTemp } from "../../util/temperature";
 /* css */
 import "./Weather.css";
 
-const Weather = (getCurrentLocation) => {
+const Weather = ({getCurrentLocation}) => {
   const dispatch = useDispatch();
   const [city, setCity] = useState("");
   const [recentCities, setRecentCities] = useState(() => {
