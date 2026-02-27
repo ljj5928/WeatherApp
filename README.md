@@ -1,4 +1,5 @@
 # 🌤️날씨 앱 제작
+
 OpenWeather API를 활용하여
 현재 날씨, 시간별 예보, 주간 예보, 전국 주요 도시 날씨 정보를 제공하는
 React 기반 웹 애플리케이션입니다.
@@ -8,31 +9,28 @@ UI/UX 개선을 위해 다크모드, 스켈레톤 로딩, 배경 이미지 변�
 
 ## 📸 Preview
 
-| 화면 | 설명 |
-|------|------|
+| 화면                                             | 설명                |
+| ------------------------------------------------ | ------------------- |
 | ![](./src/assets/preview/preview-main-light.png) | 현재 위치 기반 날씨 |
-| ![](./src/assets/preview/preview-search.png) | 도시 검색 |
-| ![](./src/assets/preview/preview-hourly.png) | 시간별 예보 |
-| ![](./src/assets/preview/preview-weekly.png) | 주간 예보 |
-| ![](./src/assets/preview/preview-main-dark.png) | 다크모드 |
-| ![](./src/assets/preview/preview-tablet.png) | 태블릿 반응형 |
-| ![](./src/assets/preview/preview-mobile.png) | 모바일 반응형 |
+| ![](./src/assets/preview/preview-main-dark.png)  | 다크모드            |
+| ![](./src/assets/preview/preview-tablet.png)     | 태블릿 반응형       |
+| ![](./src/assets/preview/preview-mobile.png)     | 모바일 반응형       |
 
 ## ⚙️실행방법
 
 - 레포지토리 클론
-git clone https://github.com/ljj5928/WeatherApp.git
+  git clone https://github.com/ljj5928/WeatherApp.git
 
 - 프론트 실행 (새 터미널)
-cd weather
-npm install
-npm run dev
+  cd weather
+  npm install
+  npm run dev
 
 ※ 본 프로젝트는 과제 제출용으로, API Key는 학습 목적상 프론트엔드에 포함되어 있습니다.
 실서비스에서는 서버 환경 변수로 관리해야 합니다.
 
 - Live Demo
-https://ljj5928.github.io/WeatherApp/#/
+  https://ljj5928.github.io/WeatherApp/#/
 
 ## ✨핵심기능
 
@@ -75,20 +73,27 @@ https://ljj5928.github.io/WeatherApp/#/
 
 ```bash
 src/
-├─ components/        # 공통 UI 컴포넌트
-│  ├─ Header/         # 헤더 및 네비게이션
-│  ├─ Nation/         # 전국 날씨 컴포넌트
-│  └─ Pages/          # 페이지 단위 컴포넌트
-│     ├─ Weather/     # 메인 날씨 페이지
-│     ├─ News/        # 날씨 뉴스 페이지
-│     └─ Calc/        # 온도 계산기
-├─ redux/             # Redux Toolkit 상태 관리
-├─ util/              # 함수관리
-├─ assets/            # 이미지 및 아이콘
-├─ App.jsx
-└─ main.jsx
+├─ main.jsx                
+├─ assets/                  
+└─ WeatherApp/
+   ├─ App.jsx
+   ├─ App.css
+   ├─ components/    
+   │  ├─ Header/
+   │  └─ Nation/
+   ├─ pages/
+   │  ├─ Weather/
+   │  ├─ News/
+   │  └─ Calc/   
+   ├─ redux/
+   │  ├─ store.js
+   │  ├─ weatherThunk.js
+   │  ├─ weatherSlice.js
+   │  └─ uiSlice.js
+   └─ util/
+      ├─ temperature.js
+      └─ newsTime.js
 ```
-
 ## 주요 기능
 
 ### 현재 위치 기반 날씨 조회
@@ -133,6 +138,7 @@ src/
 - Clear / Cloud / Rain / Haze / Mist 상태 대응
 
 ### 온도 변환 버튼
+
 - 온도를 섭씨 ,화씨 변경가능한 토글 버튼
 - 현재 날씨,시간별날씨,주간날씨,전국날씨 전체 변경
 - 현재날씨의 온도를 클릭시 변환 가능
@@ -177,27 +183,29 @@ src/
 ### 상태 관리 구조
 
 - weatherSlice
-현재 날씨
-시간별 날씨
-주간 날씨
-전국 도시 날씨
-뉴스 데이터
+  현재 날씨
+  시간별 날씨
+  주간 날씨
+  전국 도시 날씨
+  뉴스 데이터
 
 - uiSlice
-다크모드 상태 관리
+  다크모드 상태 관리
 
 - weatherThunk
-API 비동기 요청 처리
-위치 기반 날씨 조회
-도시 검색 날씨 조회
+  API 비동기 요청 처리
+  위치 기반 날씨 조회
+  도시 검색 날씨 조회
 
 ## 🎫 라이선스 & 출처
+
 - Weather Data: OpenWeather API
 - News Data: newsdata.io
 - Weather Icons: OpenWeather
 - Background Images: Unsplash (Free License)
 
 ### 이미지 출처
+
 - 본 프로젝트에 사용된 일부 이미지는 무료 이미지로 제공되는 리소스를 활용하였으나,
   정확한 출처를 확인할 수 없습니다.
 - 문제가 될 경우 즉시 삭제 또는 교체하겠습니다.
